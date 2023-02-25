@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/14 20:26:19 by ojing-ha          #+#    #+#              #
-#    Updated: 2023/02/19 18:05:29 by ojing-ha         ###   ########.fr        #
+#    Updated: 2023/02/24 00:35:14 by ojing-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,37 +20,40 @@ MAGENTA     = \033[0;95m
 CYAN         = \033[0;96m
 WHITE         = \033[0;97m
 
-NAME		= megaphone
+NAME		= phonebook
 
 CC			= c++
 
-CFLAGS	= -Wall -Werror -Wextra 
-CFLAGS  += -std=c++98
+SRCS_DIR	= srcs/
+OBJS_DIR	= objs/
 
-SRC_FILES	= megaphone
+CFLAGS	= -Wall -Werror -Wextra
+cFLAGS	+= -std=c++98
 
+SRC_FILES	= main\
+				contact\
+				phonebook
 
 SRCS	= $(addprefix $(SRCS_DIR), $(addsuffix .cpp, $(SRC_FILES)))
 OBJS	= $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
 
-OBJS_DIR	= objs/
-
 all		:
-		mkdir -p $(OBJS_DIR)
-		@echo "$(MAGENTA) --------------------------MAKING MEGAPHONE-------------------------- $(CYAN)"
+		@mkdir -p $(OBJS_DIR)
+		@echo "$(MAGENTA) --------------------------INSIDE PHONEBOOK-------------------------- $(CYAN)"
 		@echo "\n"
 		@make $(NAME)
-		@echo "$(YELLOW)Done Creating ./megaphone$(DEF_COLOR)"
+		@echo "$(YELLOW)Done Creating ./phonebook$(DEF_COLOR)"
 		@echo "\n"
 		@echo "$(GREEN) -------------$(RED)I $(CYAN)AM $(GREEN)DONE $(YELLOW)MADAFAKA$(GREEN)-------------------------- $(DEF_COLOR)"
 
-$(NAME)	: $(OBJS)
-		@${CC} ${CFLAGS} $(OBJS) -o ${NAME}
-		@echo "$(GREEN)Creating ./megaphone...$(DEF_COLOR)"
+$(NAME)	: ${OBJS}
+		@${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+		@echo "$(GREEN)Creating ./phonebook ...$(DEF_COLOR)"
 
-${OBJS_DIR}%.o:	%.cpp
+${OBJS_DIR}%.o:	$(SRCS_DIR)%.cpp
 		@$(CC) $(CFLAGS) -c $^ -o $@
 		@echo "$(GREEN)Compiling $<...$(DEF_COLOR)"
+
 
 clean	:
 		@echo "$(MAGENTA) --------------------------REMOVING objs/-------------------------- $(CYAN)"
@@ -61,10 +64,10 @@ clean	:
 		@echo "$(GREEN) --------------------------DONE--------------------------$(DEF_COLOR)"
 
 fclean	:	clean
-		@echo "$(MAGENTA) --------------------------REMOVING ./philo-------------------------- $(CYAN)"
+		@echo "$(MAGENTA) --------------------------REMOVING ./phonebook-------------------------- $(CYAN)"
 		@echo "\n"
 		@rm -f $(NAME)
-		@echo "$(RED)./megaphone Deleted$(DEF_COLOR)"
+		@echo "$(RED)./phonebook Deleted$(DEF_COLOR)"
 		@echo "\n"
 		@echo "$(GREEN) --------------------------DONE--------------------------$(DEF_COLOR)"
 
