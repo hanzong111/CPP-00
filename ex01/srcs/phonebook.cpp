@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 00:15:35 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/26 00:04:28 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:36:56 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,19 @@ Phonebook::~Phonebook()
 
 }
 
+int		check_space_tabs(const char	*buffer)
+{
+	int	i;
+
+	i = 0;
+	while(buffer[i] == '\t' || buffer[i] == ' ')
+		i++;
+	if (buffer[i] == '\0')
+		return (1);
+	else
+		return (0);
+}
+
 void	get_data(std::string *buffer)
 {
 	while (1)
@@ -32,7 +45,12 @@ void	get_data(std::string *buffer)
 			std::exit(0);
 		}
 		if (!buffer->empty())
-			break ;
+		{
+			if (check_space_tabs(buffer->c_str()))
+				std::cout << "Field can't be empty :";
+			else
+				break;
+		}
 		else
 			std::cout << "Field can't be empty :";
 	}

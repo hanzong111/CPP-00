@@ -6,7 +6,7 @@
 #    By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/14 20:26:19 by ojing-ha          #+#    #+#              #
-#    Updated: 2023/02/24 00:35:14 by ojing-ha         ###   ########.fr        #
+#    Updated: 2023/04/13 14:23:24 by ojing-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ CC			= c++
 SRCS_DIR	= srcs/
 OBJS_DIR	= objs/
 
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -fsanitize=address
 cFLAGS	+= -std=c++98
 
 SRC_FILES	= main\
